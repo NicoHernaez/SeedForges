@@ -6,6 +6,7 @@ const PROTECTED_PATHS = [
   '/investors/sexto-sentido',
   '/investors/cerca',
   '/investors/abuelo-matias',
+  '/investors/the-deeper-room',
 ];
 
 export function middleware(request: NextRequest) {
@@ -36,5 +37,6 @@ export const config = {
     '/investors/sexto-sentido',
     '/investors/cerca',
     '/investors/abuelo-matias',
+    '/investors/the-deeper-room',
   ],
 };

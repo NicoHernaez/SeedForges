@@ -24,7 +24,7 @@ export interface Project {
   financials: { label: string; value: string }[];
   risks: { risk: string; mitigation: string }[];
   ask: string;
-  githubRepo?: string; // e.g. "NicoHernaez/6to.Sentido"
+  githubRepos?: string[]; // e.g. ["NicoHernaez/6to.Sentido"]
 }
 
 export const PROJECTS: Project[] = [
@@ -94,6 +94,7 @@ export const PROJECTS: Project[] = [
       },
     ],
     ask: 'Ronda pre-seed de USD 50.000 para: verificación WhatsApp Business, hiring de growth marketer para interior, e infraestructura para escalar a 500 usuarios.',
+    githubRepos: ['NicoHernaez/7Tres7-Online', 'NicoHernaez/7Tres7-Admin', 'NicoHernaez/7Tres7-Caja'],
   },
   {
     slug: 'sexto-sentido',
@@ -152,7 +153,7 @@ export const PROJECTS: Project[] = [
       },
     ],
     ask: 'Buscamos partner técnico o inversión de USD 30.000 para acelerar la separación de producto y primeras 10 agencias piloto.',
-    githubRepo: 'NicoHernaez/6to.Sentido',
+    githubRepos: ['NicoHernaez/6to.Sentido'],
   },
   {
     slug: 'cerca',
@@ -279,6 +280,65 @@ export const PROJECTS: Project[] = [
       },
     ],
     ask: 'Buscamos USD 20.000 para desarrollo del MVP, consultoría con gerontólogos, y piloto en 3 centros de jubilados de La Pampa.',
+    githubRepos: ['NicoHernaez/AbueloMatias-MVP'],
+  },
+  {
+    slug: 'the-deeper-room',
+    name: 'The Deeper Room',
+    tagline: 'Mentoría filosófica premium con inteligencia artificial.',
+    icon: '🚪',
+    status: 'mvp',
+    statusLabel: 'MVP Activo',
+    description:
+      'Plataforma de mentoría filosófica impulsada por IA. Cinco salas temáticas con mentores filosóficos virtuales que guían conversaciones profundas sobre vida, decisiones y autoconocimiento.',
+    tags: ['IA Conversacional', 'Filosofía', 'Premium', 'Mentoría'],
+    problem:
+      'Las personas enfrentan decisiones de vida, crisis existenciales y búsqueda de propósito sin acceso a mentoría filosófica. Los coaches y terapeutas son caros y difíciles de conseguir. Las apps de bienestar son superficiales.',
+    solution:
+      'Cinco salas con mentores IA especializados: Sócrates (mayéutica), Sofía (estoicismo práctico), el Viajero (narrativa épica), el Analista (lógica y decisiones) y Marco Aurelio (estoicismo clásico). Cada conversación es profunda, personalizada y filosóficamente rigurosa.',
+    market:
+      'Profesionales 28-55 años en LATAM y España. Mercado de coaching y bienestar digital en crecimiento. Modelo founding members con tiers anuales premium.',
+    businessModel:
+      'Suscripción anual por tiers: Order ($699/año), Inner Circle ($1.499/año), Oracle ($4.999/año), Council (por definir). Modelo de invitación para generar exclusividad.',
+    stack: [
+      'HTML/CSS/JS',
+      'n8n Cloud',
+      'Supabase',
+      'Claude API',
+      'Vercel',
+    ],
+    currentStatus:
+      'MVP live en producción. 5 salas activas. PWA implementada. Founding Members v4 desplegado con 4 tiers. Workflow n8n de 88 nodos activo.',
+    metrics: [
+      { label: 'Salas activas', value: '5' },
+      { label: 'Nodos n8n', value: '88', trend: 'Workflow principal' },
+      { label: 'Founding tiers', value: '4', trend: 'Order → Council' },
+      { label: 'Status', value: 'Live en producción' },
+    ],
+    roadmap: [
+      { quarter: 'Q4 2025', milestone: 'MVP inicial: Sócrates + Sofía', status: 'done' },
+      { quarter: 'Q1 2026', milestone: '5 salas, PWA, founding v4, prompts optimizados', status: 'done' },
+      { quarter: 'Q2 2026', milestone: 'Auth completa, analytics, onboarding premium', status: 'current' },
+      { quarter: 'Q3 2026', milestone: 'App nativa, voz, expansión a español global', status: 'upcoming' },
+    ],
+    financials: [
+      { label: 'Inversión acumulada', value: 'USD 0 (bootstrapped)' },
+      { label: 'Modelo', value: 'Founding members anuales' },
+      { label: 'Precio promedio', value: 'USD 700–5.000/año por miembro' },
+      { label: 'Target año 1', value: '100 founding members' },
+    ],
+    risks: [
+      {
+        risk: 'Percepción de "chatbot filosófico" vs mentoría real',
+        mitigation: 'Diseño premium, exclusividad, calidad de prompts filosóficamente rigurosos. Testimonios de early adopters.',
+      },
+      {
+        risk: 'Dependencia de Claude API para calidad conversacional',
+        mitigation: 'Prompts extensos con personalidad profunda. Evaluación continua de calidad. n8n como capa de abstracción.',
+      },
+    ],
+    ask: 'Buscamos founding members e inversión de USD 25.000 para app nativa, integración de voz y campaña de adquisición en LATAM.',
+    githubRepos: ['NicoHernaez/The-Deeper-Room'],
   },
 ];
 

@@ -4,7 +4,7 @@ import { notFound } from 'next/navigation';
 import Card from '@/components/ui/Card';
 import Badge from '@/components/ui/Badge';
 import { PROJECTS, getProject } from '@/lib/projects';
-import { getRepoData, getCommitActivity } from '@/lib/github';
+import { getMultiRepoData, getMultiRepoActivity } from '@/lib/github';
 import GitHubActivity from '@/components/investors/GitHubActivity';
 
 interface PageProps {
@@ -35,12 +35,12 @@ export default async function ProjectDataRoomPage({ params }: PageProps) {
     notFound();
   }
 
-  const [repoData, activity] = project.githubRepo
+  const [repos, activity] = project.githubRepos
     ? await Promise.all([
-        getRepoData(project.githubRepo),
-        getCommitActivity(project.githubRepo),
+        getMultiRepoData(project.githubRepos),
+        getMultiRepoActivity(project.githubRepos),
       ])
-    : [null, null];
+    : [[], null];
 
   return (
     <div className="min-h-screen bg-[var(--color-sf-dark)]">
@@ -94,10 +94,10 @@ export default async function ProjectDataRoomPage({ params }: PageProps) {
         </section>
 
         {/* GitHub Activity */}
-        {repoData && (
+        {repos.length > 0 && (
           <section className="space-y-4">
             <SectionTitle>Desarrollo</SectionTitle>
-            <GitHubActivity repoData={repoData} activity={activity} />
+            <GitHubActivity repos={repos} activity={activity} />
           </section>
         )}
 

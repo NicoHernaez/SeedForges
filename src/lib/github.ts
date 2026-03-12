@@ -148,6 +148,41 @@ export async function getCommitActivity(
 }
 
 /**
+ * Fetches data for multiple repos and returns them all.
+ */
+export async function getMultiRepoData(
+  repos: string[]
+): Promise<GitHubRepoData[]> {
+  const results = await Promise.all(repos.map((r) => getRepoData(r)));
+  return results.filter((r): r is GitHubRepoData => r !== null);
+}
+
+/**
+ * Fetches commit activity for multiple repos and merges them.
+ */
+export async function getMultiRepoActivity(
+  repos: string[]
+): Promise<{ week: string; count: number }[] | null> {
+  const results = await Promise.all(repos.map((r) => getCommitActivity(r)));
+  const validResults = results.filter(
+    (r): r is { week: string; count: number }[] => r !== null && r.length > 0
+  );
+  if (validResults.length === 0) return null;
+
+  // Merge activity by week label
+  const weekMap = new Map<string, number>();
+  for (const activity of validResults) {
+    for (const week of activity) {
+      weekMap.set(week.week, (weekMap.get(week.week) || 0) + week.count);
+    }
+  }
+
+  return Array.from(weekMap.entries())
+    .map(([week, count]) => ({ week, count }))
+    .slice(-4);
+}
+
+/**
  * Formats a date string into a relative "time ago" string in Spanish.
  */
 export function formatRelativeDate(dateStr: string): string {
