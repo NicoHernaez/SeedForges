@@ -36,14 +36,28 @@ export default function LogoMark({ size = 200, animate = true, className = '' }:
           <stop offset="100%" stopColor="#10b981" />
         </linearGradient>
 
-        {/* Glow filter */}
-        <filter id="sf-glow" x="-50%" y="-50%" width="200%" height="200%">
-          <feGaussianBlur in="SourceGraphic" stdDeviation="3" result="blur" />
+        {/* Glow filter (stronger, wider) */}
+        <filter id="sf-glow" x="-60%" y="-60%" width="220%" height="220%">
+          <feGaussianBlur in="SourceGraphic" stdDeviation="5" result="blur" />
           <feMerge>
             <feMergeNode in="blur" />
             <feMergeNode in="SourceGraphic" />
           </feMerge>
         </filter>
+
+        {/* Soft radial background glow */}
+        <radialGradient id="sf-bgGlow" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stopColor={emerald} stopOpacity="0.1" />
+          <stop offset="60%" stopColor={emerald} stopOpacity="0.04" />
+          <stop offset="100%" stopColor={emerald} stopOpacity="0" />
+        </radialGradient>
+
+        {/* Wider ambient glow */}
+        <radialGradient id="sf-ambientGlow" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stopColor={emerald} stopOpacity="0.06" />
+          <stop offset="50%" stopColor={gold} stopOpacity="0.03" />
+          <stop offset="100%" stopColor={emerald} stopOpacity="0" />
+        </radialGradient>
 
         {/* Seed highlight filter */}
         <filter id="sf-seedGlow" x="-30%" y="-30%" width="160%" height="160%">
@@ -54,6 +68,12 @@ export default function LogoMark({ size = 200, animate = true, className = '' }:
           </feMerge>
         </filter>
       </defs>
+
+      {/* Large ambient glow behind everything */}
+      <circle cx="100" cy="85" r="95" fill="url(#sf-ambientGlow)" />
+
+      {/* Soft radial glow behind logo */}
+      <circle cx="100" cy="85" r="80" fill="url(#sf-bgGlow)" />
 
       {/* Outer hexagonal ring */}
       <polygon
@@ -181,23 +201,23 @@ export default function LogoMark({ size = 200, animate = true, className = '' }:
       {/* Forge sparks */}
       {animate && (
         <g opacity="0.7">
-          <circle cx="95" cy="68" r="1" fill={gold}>
+          <circle cx="95" cy="68" r="1.5" fill={gold}>
             <animate attributeName="cy" values="68;55;68" dur="2.5s" repeatCount="indefinite" />
             <animate attributeName="opacity" values="0.7;0;0.7" dur="2.5s" repeatCount="indefinite" />
           </circle>
-          <circle cx="105" cy="65" r="0.8" fill={emerald}>
+          <circle cx="105" cy="65" r="1.2" fill={emerald}>
             <animate attributeName="cy" values="65;50;65" dur="3s" repeatCount="indefinite" />
             <animate attributeName="opacity" values="0.5;0;0.5" dur="3s" repeatCount="indefinite" />
           </circle>
-          <circle cx="100" cy="72" r="1.2" fill={gold}>
+          <circle cx="100" cy="72" r="1.7" fill={gold}>
             <animate attributeName="cy" values="72;58;72" dur="2s" repeatCount="indefinite" />
             <animate attributeName="opacity" values="0.6;0;0.6" dur="2s" repeatCount="indefinite" />
           </circle>
-          <circle cx="92" cy="70" r="0.7" fill={emerald}>
+          <circle cx="92" cy="70" r="1.0" fill={emerald}>
             <animate attributeName="cy" values="70;52;70" dur="3.5s" repeatCount="indefinite" />
             <animate attributeName="opacity" values="0.4;0;0.4" dur="3.5s" repeatCount="indefinite" />
           </circle>
-          <circle cx="108" cy="69" r="0.9" fill={gold}>
+          <circle cx="108" cy="69" r="1.3" fill={gold}>
             <animate attributeName="cy" values="69;54;69" dur="2.8s" repeatCount="indefinite" />
             <animate attributeName="opacity" values="0.5;0;0.5" dur="2.8s" repeatCount="indefinite" />
           </circle>

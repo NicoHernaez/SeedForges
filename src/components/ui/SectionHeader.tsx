@@ -27,8 +27,15 @@ export default function SectionHeader({
     return (
       <>
         {before}
-        <span className="bg-gradient-to-r from-[var(--color-sf-emerald)] to-[var(--color-sf-gold)] bg-clip-text text-transparent">
+        <span className="relative bg-gradient-to-r from-[var(--color-sf-emerald)] to-[var(--color-sf-gold)] bg-clip-text text-transparent">
           {highlight}
+          <span
+            className="pointer-events-none absolute -bottom-1 left-0 h-[2px] w-full opacity-40"
+            style={{
+              background: 'linear-gradient(90deg, var(--color-sf-emerald), var(--color-sf-gold))',
+              filter: 'blur(4px)',
+            }}
+          />
         </span>
         {after}
       </>
@@ -36,9 +43,10 @@ export default function SectionHeader({
   };
 
   return (
-    <div className={`space-y-3 ${className}`}>
+    <div className={`space-y-4 ${className}`}>
       {label && (
-        <p className="font-[family-name:var(--font-mono)] text-xs tracking-[0.2em] uppercase text-[var(--color-sf-emerald)]">
+        <p className="flex items-center gap-3 font-[family-name:var(--font-mono)] text-xs tracking-[0.3em] uppercase text-[var(--color-sf-emerald)]">
+          <span className="inline-block h-px w-8 bg-gradient-to-r from-transparent to-[var(--color-sf-emerald)]/60" />
           {label}
         </p>
       )}

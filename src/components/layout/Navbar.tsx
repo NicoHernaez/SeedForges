@@ -37,11 +37,16 @@ export default function Navbar() {
   return (
     <>
       <nav
+        style={{
+          backdropFilter: scrolled ? 'blur(30px) saturate(1.8)' : 'blur(12px) saturate(1.2)',
+          WebkitBackdropFilter: scrolled ? 'blur(30px) saturate(1.8)' : 'blur(12px) saturate(1.2)',
+          boxShadow: scrolled ? '0 1px 30px rgba(16,185,129,0.05), 0 4px 20px rgba(0,0,0,0.3)' : 'none',
+        }}
         className={[
           'fixed top-0 left-0 right-0 z-50',
-          'transition-all duration-300',
+          'transition-all duration-500',
           scrolled
-            ? 'bg-[var(--color-sf-dark)]/80 backdrop-blur-xl border-b border-[var(--color-sf-emerald)]/10 shadow-lg shadow-black/20'
+            ? 'bg-[var(--color-sf-dark)]/85 border-b border-[var(--color-sf-emerald)]/10'
             : 'bg-transparent',
         ].join(' ')}
       >
@@ -69,10 +74,11 @@ export default function Navbar() {
                 className={[
                   'font-[family-name:var(--font-mono)] text-sm tracking-wider uppercase',
                   'text-[var(--color-sf-muted)]',
-                  'hover:text-[var(--color-sf-emerald)]',
-                  'transition-colors duration-300',
-                  'relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-px',
-                  'after:bg-[var(--color-sf-emerald)] after:transition-all after:duration-300',
+                  'hover:text-[var(--color-sf-emerald)] hover:drop-shadow-[0_0_6px_rgba(16,185,129,0.3)]',
+                  'transition-all duration-300',
+                  'relative after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:w-0 after:h-px',
+                  'after:bg-gradient-to-r after:from-transparent after:via-[var(--color-sf-emerald)] after:to-transparent',
+                  'after:transition-all after:duration-300',
                   'hover:after:w-full',
                 ].join(' ')}
               >
@@ -128,7 +134,7 @@ export default function Navbar() {
         <div
           className={[
             'absolute top-0 right-0 h-full w-72',
-            'bg-[var(--color-sf-dark)]/95 backdrop-blur-xl',
+            'glass-strong',
             'border-l border-[var(--color-sf-emerald)]/10',
             'transition-transform duration-300 ease-out',
             isOpen ? 'translate-x-0' : 'translate-x-full',

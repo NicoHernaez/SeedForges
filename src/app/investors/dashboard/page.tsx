@@ -3,6 +3,7 @@ import Link from 'next/link';
 import Card from '@/components/ui/Card';
 import Badge from '@/components/ui/Badge';
 import LogoutButton from '@/components/investors/LogoutButton';
+import ScrollReveal from '@/components/ui/ScrollReveal';
 import { PROJECTS } from '@/lib/projects';
 import { SITE } from '@/lib/constants';
 import { getMultiRepoData, formatRelativeDate, type GitHubRepoData } from '@/lib/github';
@@ -26,7 +27,7 @@ export default async function InvestorDashboardPage() {
   }
 
   return (
-    <div className="min-h-screen bg-[var(--color-sf-dark)]">
+    <div className="min-h-screen bg-[var(--color-sf-dark)] tech-grid">
       {/* Header */}
       <header className="border-b border-[var(--color-sf-emerald)]/10 px-6 py-4">
         <div className="max-w-6xl mx-auto flex items-center justify-between">
@@ -40,7 +41,10 @@ export default async function InvestorDashboardPage() {
 
       <main className="max-w-6xl mx-auto px-6 py-10 space-y-10">
         {/* Studio Overview */}
-        <Card hover={false} className="space-y-4">
+        <ScrollReveal>
+        <Card hover={false} className="space-y-4 relative overflow-hidden">
+          {/* Gradient top border decoration */}
+          <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[var(--color-sf-emerald)] to-transparent" />
           <div className="flex items-start justify-between flex-wrap gap-4">
             <div>
               <h2 className="font-[family-name:var(--font-display)] text-2xl text-[var(--color-sf-cream)] font-light">
@@ -66,8 +70,10 @@ export default async function InvestorDashboardPage() {
             <MetricBox label="Fundador" value="Nicolas Hernaez" />
           </div>
         </Card>
+        </ScrollReveal>
 
         {/* Projects Grid */}
+        <ScrollReveal delay={150}>
         <div>
           <h2 className="font-[family-name:var(--font-display)] text-2xl text-[var(--color-sf-cream)] font-light mb-6">
             Portfolio
@@ -75,7 +81,7 @@ export default async function InvestorDashboardPage() {
 
           <div className="grid md:grid-cols-2 gap-6">
             {PROJECTS.map((project) => (
-              <Link key={project.slug} href={`/investors/${project.slug}`}>
+              <Link key={project.slug} href={`/investors/${project.slug}`} className="glow-border rounded-xl">
                 <Card className="h-full space-y-4 group">
                   <div className="flex items-start justify-between">
                     <div className="flex items-center gap-3">
@@ -131,6 +137,7 @@ export default async function InvestorDashboardPage() {
             ))}
           </div>
         </div>
+        </ScrollReveal>
       </main>
     </div>
   );

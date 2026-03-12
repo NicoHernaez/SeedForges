@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import Card from '@/components/ui/Card';
 import Badge from '@/components/ui/Badge';
+import ScrollReveal from '@/components/ui/ScrollReveal';
 import { PROJECTS, getProject } from '@/lib/projects';
 import { getMultiRepoData, getMultiRepoActivity } from '@/lib/github';
 import GitHubActivity from '@/components/investors/GitHubActivity';
@@ -43,7 +44,7 @@ export default async function ProjectDataRoomPage({ params }: PageProps) {
     : [[], null];
 
   return (
-    <div className="min-h-screen bg-[var(--color-sf-dark)]">
+    <div className="min-h-screen bg-[var(--color-sf-dark)] tech-grid">
       {/* Header */}
       <header className="border-b border-[var(--color-sf-emerald)]/10 px-6 py-4">
         <div className="max-w-5xl mx-auto">
@@ -72,6 +73,7 @@ export default async function ProjectDataRoomPage({ params }: PageProps) {
         </div>
 
         {/* Metricas Actuales */}
+        <ScrollReveal>
         <section className="space-y-4">
           <SectionTitle>Metricas Actuales</SectionTitle>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
@@ -92,16 +94,20 @@ export default async function ProjectDataRoomPage({ params }: PageProps) {
             ))}
           </div>
         </section>
+        </ScrollReveal>
 
         {/* GitHub Activity */}
         {repos.length > 0 && (
+          <ScrollReveal delay={100}>
           <section className="space-y-4">
             <SectionTitle>Desarrollo</SectionTitle>
             <GitHubActivity repos={repos} activity={activity} />
           </section>
+          </ScrollReveal>
         )}
 
         {/* Roadmap */}
+        <ScrollReveal delay={200}>
         <section className="space-y-4">
           <SectionTitle>Roadmap</SectionTitle>
           <Card hover={false}>
@@ -121,7 +127,7 @@ export default async function ProjectDataRoomPage({ params }: PageProps) {
                       </div>
                     )}
                     {item.status === 'current' && (
-                      <div className="w-3.5 h-3.5 rounded-full bg-[var(--color-sf-gold)] animate-pulse" />
+                      <div className="w-3.5 h-3.5 rounded-full bg-[var(--color-sf-gold)] animate-pulse shadow-[0_0_12px_rgba(201,162,39,0.4)]" />
                     )}
                     {item.status === 'upcoming' && (
                       <div className="w-3.5 h-3.5 rounded-full border-2 border-[var(--color-sf-muted)]/40 bg-transparent" />
@@ -150,8 +156,10 @@ export default async function ProjectDataRoomPage({ params }: PageProps) {
             </div>
           </Card>
         </section>
+        </ScrollReveal>
 
         {/* Financials */}
+        <ScrollReveal delay={300}>
         <section className="space-y-4">
           <SectionTitle>Financials</SectionTitle>
           <Card hover={false} className="space-y-3">
@@ -159,8 +167,9 @@ export default async function ProjectDataRoomPage({ params }: PageProps) {
               <div
                 key={i}
                 className={[
-                  'flex justify-between items-baseline gap-4 py-2',
+                  'flex justify-between items-baseline gap-4 py-2 px-2 rounded',
                   i < project.financials.length - 1 ? 'border-b border-[var(--color-sf-emerald)]/5' : '',
+                  i % 2 === 0 ? 'bg-[var(--color-sf-emerald)]/[0.02]' : '',
                 ].join(' ')}
               >
                 <span className="text-[var(--color-sf-muted)] text-sm font-[family-name:var(--font-body)]">
@@ -176,8 +185,10 @@ export default async function ProjectDataRoomPage({ params }: PageProps) {
             </p>
           </Card>
         </section>
+        </ScrollReveal>
 
         {/* Documentos */}
+        <ScrollReveal delay={400}>
         <section className="space-y-4">
           <SectionTitle>Documentos</SectionTitle>
           <Card hover={false} className="space-y-3">
@@ -222,8 +233,10 @@ export default async function ProjectDataRoomPage({ params }: PageProps) {
             ))}
           </Card>
         </section>
+        </ScrollReveal>
 
         {/* Riesgos y Mitigacion */}
+        <ScrollReveal delay={500}>
         <section className="space-y-4">
           <SectionTitle>Riesgos y Mitigacion</SectionTitle>
           <Card hover={false}>
@@ -262,11 +275,14 @@ export default async function ProjectDataRoomPage({ params }: PageProps) {
             </div>
           </Card>
         </section>
+        </ScrollReveal>
 
         {/* Ask */}
+        <ScrollReveal delay={600}>
         <section className="space-y-4">
           <SectionTitle>Que necesita este proyecto</SectionTitle>
-          <Card hover={false} className="space-y-4">
+          <div className="relative rounded-xl p-px bg-gradient-to-r from-transparent via-[var(--color-sf-emerald)]/30 to-transparent">
+          <Card hover={false} className="space-y-4 relative">
             <p className="text-[var(--color-sf-cream)] text-sm font-[family-name:var(--font-body)] leading-relaxed">
               {project.ask}
             </p>
@@ -291,7 +307,9 @@ export default async function ProjectDataRoomPage({ params }: PageProps) {
               Contactar: hola@seedforges.com
             </a>
           </Card>
+          </div>
         </section>
+        </ScrollReveal>
       </main>
     </div>
   );

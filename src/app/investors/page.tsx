@@ -38,12 +38,33 @@ export default function InvestorsLoginPage() {
   }
 
   return (
-    <div className="min-h-screen bg-[var(--color-sf-dark)] flex items-center justify-center px-4">
-      <div className="w-full max-w-sm space-y-8 text-center">
-        {/* Logo */}
+    <div className="min-h-screen bg-[var(--color-sf-dark)] flex items-center justify-center px-4 tech-grid relative">
+      {/* Radial glow behind form */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background: 'radial-gradient(circle at 50% 45%, rgba(16,185,129,0.06) 0%, transparent 50%)',
+        }}
+      />
+
+      <div className="w-full max-w-sm space-y-8 text-center relative z-10">
+        {/* Logo with glow */}
         <div className="flex justify-center">
-          <LogoMark size={100} animate={false} />
+          <div className="relative">
+            <div
+              className="absolute inset-0 -m-8 pointer-events-none rounded-full"
+              style={{
+                background: 'radial-gradient(circle, rgba(16,185,129,0.12) 0%, transparent 70%)',
+              }}
+            />
+            <LogoMark size={100} animate={false} />
+          </div>
         </div>
+
+        {/* Shimmer exclusive text */}
+        <p className="shimmer-text font-[family-name:var(--font-mono)] text-xs tracking-[0.25em] uppercase">
+          Acceso exclusivo para inversores
+        </p>
 
         {/* Title */}
         <div className="space-y-2">
@@ -55,8 +76,8 @@ export default function InvestorsLoginPage() {
           </p>
         </div>
 
-        {/* Form */}
-        <form onSubmit={handleSubmit} className="space-y-4">
+        {/* Form with glass */}
+        <form onSubmit={handleSubmit} className="glass-strong rounded-2xl p-6 space-y-4">
           <input
             type="password"
             value={password}
@@ -73,6 +94,7 @@ export default function InvestorsLoginPage() {
               'outline-none',
               'focus:border-[var(--color-sf-emerald)]/60',
               'focus:ring-1 focus:ring-[var(--color-sf-emerald)]/30',
+              'focus:shadow-[0_0_20px_rgba(16,185,129,0.15)]',
               'transition-all duration-300',
             ].join(' ')}
           />
@@ -95,7 +117,7 @@ export default function InvestorsLoginPage() {
         </form>
 
         {/* Footer note */}
-        <p className="text-[var(--color-sf-muted)]/60 text-xs font-[family-name:var(--font-mono)]">
+        <p className="text-[var(--color-sf-muted)]/60 text-xs font-[family-name:var(--font-mono)] tracking-wider">
           Acceso exclusivo para inversores autorizados
         </p>
       </div>
