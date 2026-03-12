@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import Image from 'next/image';
 import SectionHeader from '@/components/ui/SectionHeader';
 import Card from '@/components/ui/Card';
 
@@ -38,12 +39,13 @@ export default function AboutPage() {
         <SectionHeader label="EQUIPO" title="Fundador" />
         <Card hover={false}>
           <div className="flex flex-col md:flex-row gap-8 items-center md:items-start">
-            {/* Photo placeholder */}
-            <div className="shrink-0 w-32 h-32 rounded-2xl bg-[var(--color-sf-forest)] border border-[var(--color-sf-emerald)]/20 flex items-center justify-center">
-              <span className="font-[family-name:var(--font-display)] text-3xl text-[var(--color-sf-emerald)]/60">
-                NH
-              </span>
-            </div>
+            <Image
+              src="/images/nico-hernaez.jpeg"
+              alt="Nico Hernáez — Fundador de Seed Forges"
+              width={128}
+              height={128}
+              className="shrink-0 w-32 h-32 rounded-2xl object-cover border border-[var(--color-sf-emerald)]/20"
+            />
             <div className="space-y-3 text-center md:text-left">
               <h3 className="font-[family-name:var(--font-display)] text-2xl text-[var(--color-sf-cream)]">
                 Nico Hernáez
