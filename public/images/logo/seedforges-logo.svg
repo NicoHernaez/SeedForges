@@ -1,0 +1,53 @@
+<svg width="512" height="512" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="seedGrad" x1="50%" y1="0%" x2="50%" y2="100%">
+      <stop offset="0%" stop-color="#e8c547"/>
+      <stop offset="50%" stop-color="#c9a227"/>
+      <stop offset="100%" stop-color="#8a6d14"/>
+    </linearGradient>
+    <linearGradient id="sproutGrad" x1="50%" y1="100%" x2="50%" y2="0%">
+      <stop offset="0%" stop-color="#10b981"/>
+      <stop offset="100%" stop-color="#34d399"/>
+    </linearGradient>
+    <linearGradient id="leafGrad" x1="0%" y1="50%" x2="100%" y2="50%">
+      <stop offset="0%" stop-color="#10b981"/>
+      <stop offset="100%" stop-color="#34d399" stop-opacity="0.7"/>
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <!-- Outer hexagonal forge ring -->
+  <polygon points="100,18 165,52 165,118 100,152 35,118 35,52" fill="none" stroke="#c9a227" stroke-width="1.5" opacity="0.3"/>
+  <!-- Inner ring -->
+  <polygon points="100,35 150,60 150,110 100,135 50,110 50,60" fill="none" stroke="#c9a227" stroke-width="1" opacity="0.15"/>
+
+  <!-- Crystalline seed body -->
+  <path d="M100,70 L130,100 L100,145 L70,100 Z" fill="url(#seedGrad)" opacity="0.9"/>
+  <path d="M100,70 L100,145" stroke="#8a6d14" stroke-width="0.5" opacity="0.4"/>
+  <path d="M70,100 L130,100" stroke="#8a6d14" stroke-width="0.5" opacity="0.3"/>
+  <path d="M100,70 L70,100" stroke="#e8c547" stroke-width="0.5" opacity="0.3"/>
+  <path d="M100,70 L130,100" stroke="#e8c547" stroke-width="0.5" opacity="0.3"/>
+  <path d="M100,70 L88,92 L100,100 Z" fill="white" opacity="0.12"/>
+
+  <!-- Sprout stem -->
+  <path d="M100,70 L100,32" stroke="url(#sproutGrad)" stroke-width="3" stroke-linecap="round" filter="url(#glow)"/>
+  <!-- Left leaf -->
+  <path d="M100,48 Q82,38 75,28 Q88,35 100,48" fill="url(#leafGrad)" filter="url(#glow)"/>
+  <!-- Right leaf -->
+  <path d="M100,40 Q118,30 128,22 Q115,32 100,40" fill="url(#leafGrad)" filter="url(#glow)"/>
+
+  <!-- Energy dots -->
+  <circle cx="55" cy="75" r="1.5" fill="#10b981" opacity="0.5"/>
+  <circle cx="145" cy="75" r="1.5" fill="#10b981" opacity="0.5"/>
+  <circle cx="60" cy="125" r="1" fill="#c9a227" opacity="0.4"/>
+  <circle cx="140" cy="125" r="1" fill="#c9a227" opacity="0.4"/>
+
+  <!-- Circuit/tech lines -->
+  <path d="M130,100 L155,100 L155,85" stroke="#10b981" stroke-width="0.8" opacity="0.2"/>
+  <path d="M70,100 L45,100 L45,115" stroke="#10b981" stroke-width="0.8" opacity="0.2"/>
+  <circle cx="155" cy="85" r="2" fill="#10b981" opacity="0.3"/>
+  <circle cx="45" cy="115" r="2" fill="#10b981" opacity="0.3"/>
+</svg>
