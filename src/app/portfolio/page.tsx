@@ -6,7 +6,7 @@ import ScrollReveal from '@/components/ui/ScrollReveal';
 export const metadata: Metadata = {
   title: 'Portafolio — Seed Forges',
   description:
-    'Conocé los 4 proyectos de Seed Forges: Gerente Virtual, 6to Sentido, CERCA y Abuelo Matías. IA vertical para negocios reales del interior argentino.',
+    'Conocé los 12+ proyectos de Seed Forges en 5 categorías: IA para PyMEs, consumer, comunidad, industria y laboratorio. Tecnología vertical para negocios reales del interior argentino.',
 };
 
 export default function PortfolioPage() {

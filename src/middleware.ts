@@ -5,8 +5,13 @@ const PROTECTED_PATHS = [
   '/investors/gerente-virtual',
   '/investors/sexto-sentido',
   '/investors/cerca',
+  '/investors/brian',
   '/investors/abuelo-matias',
   '/investors/the-deeper-room',
+  '/investors/es-plus',
+  '/investors/la-societe',
+  '/investors/svd',
+  '/investors/7tres7',
 ];
 
 export function middleware(request: NextRequest) {
@@ -36,7 +41,12 @@ export const config = {
     '/investors/gerente-virtual',
     '/investors/sexto-sentido',
     '/investors/cerca',
+    '/investors/brian',
     '/investors/abuelo-matias',
     '/investors/the-deeper-room',
+    '/investors/es-plus',
+    '/investors/la-societe',
+    '/investors/svd',
+    '/investors/7tres7',
   ],
 };

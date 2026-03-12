@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import type { Project } from '@/lib/projects';
+import { CATEGORIES } from '@/lib/projects';
 import Card from '@/components/ui/Card';
 import Badge from '@/components/ui/Badge';
 
@@ -8,6 +9,8 @@ interface ProjectCardProps {
 }
 
 export default function ProjectCard({ project }: ProjectCardProps) {
+  const category = CATEGORIES.find((c) => c.slug === project.category);
+
   return (
     <Link href={`/portfolio/${project.slug}`} className="block group">
       <Card hover={false} className="glow-border transition-all duration-[600ms] ease-[cubic-bezier(0.23,1,0.32,1)] group-hover:-translate-y-[10px] group-hover:scale-[1.02] group-hover:shadow-[0_24px_80px_rgba(16,185,129,0.2),0_12px_40px_rgba(0,0,0,0.5)]">
@@ -49,6 +52,14 @@ export default function ProjectCard({ project }: ProjectCardProps) {
               </svg>
             </div>
           </div>
+
+          {/* Category badge */}
+          {category && (
+            <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] font-[family-name:var(--font-mono)] tracking-wider uppercase bg-[var(--color-sf-cream)]/5 text-[var(--color-sf-muted)] border border-[var(--color-sf-cream)]/10">
+              <span className="text-xs">{category.icon}</span>
+              {category.name}
+            </span>
+          )}
 
           {/* Name */}
           <h3 className="font-[family-name:var(--font-display)] text-2xl text-[var(--color-sf-cream)] group-hover:text-white transition-colors duration-300">

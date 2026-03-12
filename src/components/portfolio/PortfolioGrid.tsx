@@ -1,25 +1,34 @@
 'use client';
 
 import { useState } from 'react';
-import type { ProjectStatus } from '@/lib/projects';
+import type { ProjectStatus, ProjectCategory } from '@/lib/projects';
 import { PROJECTS } from '@/lib/projects';
-import StatusFilter from '@/components/portfolio/StatusFilter';
+import PortfolioFilters from '@/components/portfolio/PortfolioFilters';
 import ProjectCard from '@/components/portfolio/ProjectCard';
 
-type FilterValue = ProjectStatus | 'all';
+type StatusFilterValue = ProjectStatus | 'all';
+type CategoryFilterValue = ProjectCategory | 'all';
 
 export default function PortfolioGrid() {
-  const [filter, setFilter] = useState<FilterValue>('all');
+  const [categoryFilter, setCategoryFilter] = useState<CategoryFilterValue>('all');
+  const [statusFilter, setStatusFilter] = useState<StatusFilterValue>('all');
 
-  const filtered = filter === 'all'
-    ? PROJECTS
-    : PROJECTS.filter((p) => p.status === filter);
+  const filtered = PROJECTS.filter((p) => {
+    const matchCategory = categoryFilter === 'all' || p.category === categoryFilter;
+    const matchStatus = statusFilter === 'all' || p.status === statusFilter;
+    return matchCategory && matchStatus;
+  });
 
   return (
     <div className="space-y-10">
-      <StatusFilter activeFilter={filter} onFilterChange={setFilter} />
+      <PortfolioFilters
+        activeCategory={categoryFilter}
+        activeStatus={statusFilter}
+        onCategoryChange={setCategoryFilter}
+        onStatusChange={setStatusFilter}
+      />
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {filtered.map((project) => (
           <div
             key={project.slug}
@@ -33,7 +42,7 @@ export default function PortfolioGrid() {
 
       {filtered.length === 0 && (
         <p className="text-center text-[var(--color-sf-muted)] font-[family-name:var(--font-body)] py-12">
-          No hay proyectos con este estado.
+          No hay proyectos con estos filtros. Probá otra combinación.
         </p>
       )}
     </div>

@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import Image from 'next/image';
+import Link from 'next/link';
 import SectionHeader from '@/components/ui/SectionHeader';
 import Card from '@/components/ui/Card';
 import ScrollReveal from '@/components/ui/ScrollReveal';
@@ -7,7 +8,7 @@ import ScrollReveal from '@/components/ui/ScrollReveal';
 export const metadata: Metadata = {
   title: 'Nosotros — Seed Forges',
   description:
-    'Conocé la historia, el equipo y la tesis de inversión de Seed Forges. IA vertical para los negocios que mueven la economía real del interior argentino.',
+    'Conocé la historia, el equipo y la filosofía de Seed Forges. Un fundador + IA como socio estratégico. 12+ proyectos en 5 categorías, desde General Pico al mundo.',
 };
 
 export default function AboutPage() {
@@ -60,7 +61,8 @@ export default function AboutPage() {
                   Fundador & CEO
                 </p>
                 <p className="font-[family-name:var(--font-body)] text-[var(--color-sf-muted)] leading-relaxed">
-                  Emprendedor con +20 años en gastronomía, sommelier certificado. No es un tech founder clásico:
+                  Emprendedor con +20 años en gastronomía, sommelier certificado y padre de gemelos.
+                  Basado en General Pico, La Pampa. No es un tech founder clásico:
                   es un comerciante que entiende los problemas desde la operación diaria y construye soluciones con IA.
                 </p>
               </div>
@@ -69,7 +71,41 @@ export default function AboutPage() {
         </section>
       </ScrollReveal>
 
-      {/* Tesis de Inversion */}
+      {/* Cómo trabaja el studio */}
+      <ScrollReveal delay={175}>
+        <section className="space-y-6">
+          <SectionHeader label="MODELO" title="Cómo trabaja el studio" />
+          <Card hover={false}>
+            <div className="space-y-6">
+              <p className="font-[family-name:var(--font-body)] text-[var(--color-sf-muted)] leading-relaxed text-lg">
+                Seed Forges opera con un modelo radical: <span className="text-[var(--color-sf-cream)]">un fundador + IA como socio estratégico</span>.
+                No hay equipo de 20 personas. Hay un emprendedor con visión sistémica y la disciplina de construir todos los días.
+              </p>
+              <p className="font-[family-name:var(--font-body)] text-[var(--color-sf-muted)] leading-relaxed text-lg">
+                El output lo demuestra:
+              </p>
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                {[
+                  { value: '12+', label: 'Proyectos en 5 categorías' },
+                  { value: '100k+', label: 'Palabras en documentación técnica' },
+                  { value: '$0', label: 'En marketing digital' },
+                ].map((metric) => (
+                  <div key={metric.label} className="text-center p-4 rounded-xl bg-[var(--color-sf-emerald)]/5 border border-[var(--color-sf-emerald)]/10">
+                    <p className="font-[family-name:var(--font-display)] text-3xl gradient-text font-light">
+                      {metric.value}
+                    </p>
+                    <p className="font-[family-name:var(--font-mono)] text-[10px] tracking-wider uppercase text-[var(--color-sf-muted)] mt-1">
+                      {metric.label}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </Card>
+        </section>
+      </ScrollReveal>
+
+      {/* Tesis de Inversión */}
       <ScrollReveal delay={200}>
         <section className="space-y-6">
           <SectionHeader label="TESIS" title="Tesis de inversión" />
@@ -77,7 +113,7 @@ export default function AboutPage() {
             {[
               { title: 'Por qué el interior argentino', text: '+500.000 PyMEs sin software adaptado a su realidad.' },
               { title: 'Por qué IA vertical', text: 'Un agente que conoce el rubro > una herramienta genérica.' },
-              { title: 'Por qué WhatsApp-first', text: 'El hardware que el comerciante ya tiene.' },
+              { title: 'Por qué WhatsApp-first', text: 'El hardware que el comerciante ya tiene. 98% de penetración.' },
               { title: 'Por qué zero-integration', text: 'El agente ES el sistema, no se integra a otro.' },
             ].map((item) => (
               <div key={item.title} className="glow-border relative">
@@ -93,6 +129,17 @@ export default function AboutPage() {
                 </Card>
               </div>
             ))}
+          </div>
+          <div className="text-center pt-4">
+            <Link
+              href="/thesis"
+              className="inline-flex items-center gap-2 font-[family-name:var(--font-mono)] text-sm tracking-wider uppercase text-[var(--color-sf-emerald)] hover:text-[var(--color-sf-gold)] transition-colors duration-300"
+            >
+              Leer tesis completa
+              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+              </svg>
+            </Link>
           </div>
         </section>
       </ScrollReveal>
