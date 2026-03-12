@@ -4,6 +4,8 @@ import { notFound } from 'next/navigation';
 import Card from '@/components/ui/Card';
 import Badge from '@/components/ui/Badge';
 import { PROJECTS, getProject } from '@/lib/projects';
+import { getRepoData, getCommitActivity } from '@/lib/github';
+import GitHubActivity from '@/components/investors/GitHubActivity';
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -32,6 +34,13 @@ export default async function ProjectDataRoomPage({ params }: PageProps) {
   if (!project) {
     notFound();
   }
+
+  const [repoData, activity] = project.githubRepo
+    ? await Promise.all([
+        getRepoData(project.githubRepo),
+        getCommitActivity(project.githubRepo),
+      ])
+    : [null, null];
 
   return (
     <div className="min-h-screen bg-[var(--color-sf-dark)]">
@@ -83,6 +92,14 @@ export default async function ProjectDataRoomPage({ params }: PageProps) {
             ))}
           </div>
         </section>
+
+        {/* GitHub Activity */}
+        {repoData && (
+          <section className="space-y-4">
+            <SectionTitle>Desarrollo</SectionTitle>
+            <GitHubActivity repoData={repoData} activity={activity} />
+          </section>
+        )}
 
         {/* Roadmap */}
         <section className="space-y-4">

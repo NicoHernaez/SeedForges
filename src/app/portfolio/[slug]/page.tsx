@@ -2,9 +2,11 @@ import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { PROJECTS, getProject } from '@/lib/projects';
+import { getRepoData } from '@/lib/github';
 import Card from '@/components/ui/Card';
 import Badge from '@/components/ui/Badge';
 import Button from '@/components/ui/Button';
+import GitHubStats from '@/components/ui/GitHubStats';
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -30,6 +32,10 @@ export default async function ProjectPage({ params }: PageProps) {
   const project = getProject(slug);
 
   if (!project) notFound();
+
+  const repoData = project.githubRepo
+    ? await getRepoData(project.githubRepo)
+    : null;
 
   return (
     <main className="min-h-screen px-6 py-24 md:py-32 max-w-4xl mx-auto space-y-12">
@@ -137,6 +143,9 @@ export default async function ProjectPage({ params }: PageProps) {
             </div>
           </div>
         </Card>
+
+        {/* GitHub Stats */}
+        {repoData && <GitHubStats repoData={repoData} />}
 
         {/* Estado Actual */}
         <Card hover={false}>

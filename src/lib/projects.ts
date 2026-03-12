@@ -24,6 +24,7 @@ export interface Project {
   financials: { label: string; value: string }[];
   risks: { risk: string; mitigation: string }[];
   ask: string;
+  githubRepo?: string; // e.g. "NicoHernaez/6to.Sentido"
 }
 
 export const PROJECTS: Project[] = [
@@ -151,6 +152,7 @@ export const PROJECTS: Project[] = [
       },
     ],
     ask: 'Buscamos partner técnico o inversión de USD 30.000 para acelerar la separación de producto y primeras 10 agencias piloto.',
+    githubRepo: 'NicoHernaez/6to.Sentido',
   },
   {
     slug: 'cerca',
